@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct ReportCard: View {
-    let title = "Hogar Limpio"
-    let url = "www.hogarLimpio.com"
-    let description = "Esta página anuncia una licuadora multifuncional con varias velocidades y vaso de vidrio resistente, pero cuando llega el pedido solo es una licuadora de plástico pequeña y frágil, muy diferente a lo mostrado."
+    let title: String
+    let url: String
+    let description: String
     
-    let category = "Casa"
-    let icon = "house"
+    let category: CategoryModel
     
     let accepted = true
     
@@ -37,7 +36,7 @@ struct ReportCard: View {
                 
                 Spacer()
                 
-                CategoryField(categoryName: "Casa", icon: "house", color: .green, sideView: status)                
+                CategoryField(categoryName: category.name, icon: category.icon, color: category.categoryColor, sideView: status)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
@@ -47,8 +46,10 @@ struct ReportCard: View {
     }
 }
 
+let category = "Casa"
+let icon = "house"
 #Preview {
-    ReportCard()
+    ReportCard(title: "Hogar Limpio", url: "www.hogarLimpio.com", description: "Esta", category: CategoryModel(id: 1, name: "House", icon: "house"))
 }
 
 

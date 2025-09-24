@@ -11,7 +11,7 @@ struct ExampleCards {
     static let card1 = CardModel(
         titulo: "Tienda electrónica falsa",
         url: "https://www.alertafraude.mx/reportes/1001",
-        imageUrl: "https://www.alertafraude.mx/images/fake-store1.jpg",
+        imageUrl: "https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/34041b678f8322dd95446ca0e0ee3d4caebb59008a7aa3f8922a8461c268fe6d1617888011678.jpg",
         descripcion: "Ofrecía laptops a precios muy bajos. Los clientes nunca recibieron los productos.",
         categoria: CategoryModel(id: 1, name: "Fraude en compras", icon: "cart.badge.questionmark"),
         likes: 124

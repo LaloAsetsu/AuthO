@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct CardModel: Codable {
+    let titulo: String
+    let url: String
+    let imageUrl: String
+    let descripcion: String
+    
+    let categoria: CategoryModel
+    let likes: Int
+}

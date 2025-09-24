@@ -25,11 +25,14 @@ struct ProfileView: View {
                     .foregroundStyle(.secondary)
                     .padding(.horizontal)
             
-                    ForEach(0..<12, id: \.self) { i in
-                        ReportCard()
+                    ForEach(ExampleCards.cards, id: \.titulo) { card in
+                        ReportCard(title: card.titulo, url: card.url, description: card.descripcion, category: card.categoria)
                             .padding(.horizontal)
                             .padding(.vertical, 8)
                     }
+                    
+                    Spacer()
+                        .frame(height: 90)
                     
                 }
                 .padding(.horizontal)
