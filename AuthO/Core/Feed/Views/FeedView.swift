@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FeedView: View {
     @Binding var selectedIndex: Int
+    @State private var showAddReport: Bool = false
     
     var body: some View {
         NavigationView{
@@ -44,12 +45,16 @@ struct FeedView: View {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
                             print("Crear Reporte")
+                            showAddReport=true
                         } label: {
                             Image(systemName: "plus.circle")
                         }
                         .tint(Color(.systemBlue))
                     }
                 }
+            }
+            .sheet(isPresented: $showAddReport) {
+                AddReportView(showAddReport: $showAddReport)
             }
             .ignoresSafeArea()
         }
