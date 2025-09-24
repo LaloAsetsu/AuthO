@@ -10,9 +10,11 @@ import SwiftUI
 struct SignInView: View {
     @State var email: String = ""
     @State var password: String = ""
+    @EnvironmentObject var sesion: SessionManager
 
     var body: some View {
         VStack{
+            NavigationLink(destination: MainTabView().toolbar(.hidden), isActive: $sesion.logged, label:{ })
             
             Image("logo")
                 .frame(width: 200, height: 200)
@@ -39,7 +41,7 @@ struct SignInView: View {
                     
                     Button{
                         print("iniciando sesion")
-                        
+                        sesion.logged = true
                     } label: {
                         Text("Iniciar sesión")
                             .font(.headline)

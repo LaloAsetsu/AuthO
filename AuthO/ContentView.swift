@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var sesion: SessionManager
+    
     var body: some View {
-        MainTabView()
+        if(sesion.logged){
+            MainTabView()
+        } else {
+            SignInView()
+        }
+        
     }
 }
 

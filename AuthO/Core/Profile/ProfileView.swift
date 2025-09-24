@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @EnvironmentObject var sesion: SessionManager
+    
     var body: some View {
         NavigationView{
             VStack{
@@ -48,6 +50,8 @@ struct ProfileView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         print("saliendo")
+                        sesion.logged = false
+                        
                     } label: {
                         Image(systemName: "door.right.hand.open")
                     }

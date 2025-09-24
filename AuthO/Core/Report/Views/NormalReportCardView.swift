@@ -10,12 +10,13 @@ import SwiftUI
 import Kingfisher
 
 struct NormalReportCardView: View {
-    let title = "Hogar Limpio"
-    let url = "www.hogarLimpio.com"
-    let description = "Esta página anuncia una licuadora multifuncional con varias velocidades y vaso de vidrio resistente, pero cuando llega el pedido solo es una licuadora de plástico pequeña y frágil, muy diferente a lo mostrado."
+    let title: String
+    let url: String
+    let imageUrl: String
+    let description: String
+    let likes: Int
     
-    let category = "Casa"
-    let icon = "house"
+    let category: CategoryModel
     
     let accepted = true
     
@@ -29,7 +30,7 @@ struct NormalReportCardView: View {
                     .font(.caption)
                     .foregroundStyle(.blue)
                 
-                KFImage(URL(string: "https://53.fs1.hubspotusercontent-na1.net/hub/53/hubfs/Telerik.webp?width=650&height=409&name=Telerik.webp")!)
+                KFImage(URL(string: imageUrl)!)
                     .resizable()
                     .scaledToFill()
                     .frame(width: 340, height: 170)
@@ -50,7 +51,7 @@ struct NormalReportCardView: View {
                 
                 Spacer()
                 
-                CategoryField(categoryName: "Casa", icon: "house", color: .green, sideView: likeView)
+                CategoryField(categoryName: category.name, icon: category.icon, color: category.categoryColor, sideView: likeView)
                 
                 
                 
@@ -63,10 +64,6 @@ struct NormalReportCardView: View {
     }
 }
 
-#Preview {
-    NormalReportCardView()
-}
-
 extension NormalReportCardView {
     var likeView: some View {
         HStack{
@@ -77,7 +74,7 @@ extension NormalReportCardView {
             }
             .foregroundStyle(.black)
             
-            Text("98")
+            Text("\(likes)")
         }
     }
 }

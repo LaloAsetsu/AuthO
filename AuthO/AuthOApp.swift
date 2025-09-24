@@ -9,10 +9,13 @@ import SwiftUI
 
 @main
 struct AuthOApp: App {
+    @StateObject var sesion = SessionManager()
+    
     var body: some Scene {
         WindowGroup {
             NavigationView{
                 ContentView()
+                    .environmentObject(sesion)
             }
         }
     }

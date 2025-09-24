@@ -20,7 +20,7 @@ struct ExampleCards {
     static let card2 = CardModel(
         titulo: "Correo de phishing bancario",
         url: "https://www.alertafraude.mx/reportes/1002",
-        imageUrl: "https://www.alertafraude.mx/images/phishing-email.jpg",
+        imageUrl: "https://mbluxury1.s3.amazonaws.com/2020/07/14065242/BankWAW-website-design.jpg",
         descripcion: "Usuarios recibieron correos que simulaban ser de un banco, solicitando datos de acceso.",
         categoria: CategoryModel(id: 2, name: "Phishing", icon: "envelope.badge.shield.half.filled"),
         likes: 312
@@ -29,7 +29,7 @@ struct ExampleCards {
     static let card3 = CardModel(
         titulo: "App de descuentos fraudulentos",
         url: "https://www.alertafraude.mx/reportes/1003",
-        imageUrl: "https://www.alertafraude.mx/images/fake-app.jpg",
+        imageUrl: "https://www.templateshub.net/uploads/1570009401%20CouponDay%20Clean%20Premium%20Coupon%20Template.jpg",
         descripcion: "Una aplicación prometía grandes descuentos, pero robaba datos bancarios.",
         categoria: CategoryModel(id: 3, name: "Apps falsas", icon: "app.badge.checkmark"),
         likes: 198
@@ -38,7 +38,7 @@ struct ExampleCards {
     static let card4 = CardModel(
         titulo: "Falsos créditos inmediatos",
         url: "https://www.alertafraude.mx/reportes/1004",
-        imageUrl: "https://www.alertafraude.mx/images/fake-credit.jpg",
+        imageUrl: "https://themewagon.com/wp-content/uploads/2020/11/credit-1.jpg",
         descripcion: "Un sitio pedía depósitos por 'gastos de gestión' y nunca otorgaba el crédito.",
         categoria: CategoryModel(id: 4, name: "Fraude bancario", icon: "banknote.fill"),
         likes: 265
@@ -47,7 +47,7 @@ struct ExampleCards {
     static let card5 = CardModel(
         titulo: "Perfil falso en redes sociales",
         url: "https://www.alertafraude.mx/reportes/1005",
-        imageUrl: "https://www.alertafraude.mx/images/fake-profile.jpg",
+        imageUrl: "https://miro.medium.com/v2/resize:fit:1400/0*sVJDL0GdqXDxzynj.jpg",
         descripcion: "Cuentas se hacían pasar por celebridades para pedir dinero a seguidores.",
         categoria: CategoryModel(id: 5, name: "Redes sociales falsas", icon: "person.2.slash.fill"),
         likes: 432
@@ -56,7 +56,7 @@ struct ExampleCards {
     static let card6 = CardModel(
         titulo: "Inversión en criptomonedas inexistentes",
         url: "https://www.alertafraude.mx/reportes/1006",
-        imageUrl: "https://www.alertafraude.mx/images/fake-crypto.jpg",
+        imageUrl: "https://themewagon.com/wp-content/uploads/2020/11/crypto-1.jpg",
         descripcion: "Un sitio ofrecía inversiones en criptomonedas que no existían.",
         categoria: CategoryModel(id: 6, name: "Estafas de inversión", icon: "chart.line.downtrend.xyaxis"),
         likes: 289
@@ -65,7 +65,7 @@ struct ExampleCards {
     static let card7 = CardModel(
         titulo: "Publicidad de viajes falsos",
         url: "https://www.alertafraude.mx/reportes/1007",
-        imageUrl: "https://www.alertafraude.mx/images/fake-travel.jpg",
+        imageUrl: "https://mbluxury1.s3.amazonaws.com/2024/06/25074513/Travel-Website-Design-Tour-Radar.jpg",
         descripcion: "Promocionaban viajes todo incluido a mitad de precio. Nunca se confirmaron boletos.",
         categoria: CategoryModel(id: 7, name: "Publicidad engañosa", icon: "megaphone.fill"),
         likes: 150
@@ -74,7 +74,7 @@ struct ExampleCards {
     static let card8 = CardModel(
         titulo: "Venta de consolas inexistentes",
         url: "https://www.alertafraude.mx/reportes/1008",
-        imageUrl: "https://www.alertafraude.mx/images/fake-console.jpg",
+        imageUrl: "https://static.vecteezy.com/system/resources/previews/009/521/560/non_2x/online-gaming-concept-website-landing-page-with-game-console-free-illustration-background-free-vector.jpg",
         descripcion: "Prometían entregas inmediatas de consolas en preventa, pero nunca se enviaron.",
         categoria: CategoryModel(id: 1, name: "Fraude en compras", icon: "cart.badge.questionmark"),
         likes: 375
@@ -83,7 +83,7 @@ struct ExampleCards {
     static let card9 = CardModel(
         titulo: "Correo con archivo sospechoso",
         url: "https://www.alertafraude.mx/reportes/1009",
-        imageUrl: "https://www.alertafraude.mx/images/malware-email.jpg",
+        imageUrl: "https://www.lifewire.com/thmb/GYpSjFecUJX2Ktls5ZCKPIDvc_g=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gmail-select-insert-link-2681bddad62a4b34afe7c732995bd003.jpg",
         descripcion: "Un correo con un supuesto recibo contenía un archivo malicioso.",
         categoria: CategoryModel(id: 2, name: "Phishing", icon: "tray.full.fill"),
         likes: 210
@@ -92,7 +92,7 @@ struct ExampleCards {
     static let card10 = CardModel(
         titulo: "Suplantación de identidad en trámites",
         url: "https://www.alertafraude.mx/reportes/1010",
-        imageUrl: "https://www.alertafraude.mx/images/identity-theft.jpg",
+        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4y9X3Kv9wa0Biax50gBdST0EwkhQPZQG6ow&s",
         descripcion: "Un portal imitaba páginas de gobierno para robar datos personales.",
         categoria: CategoryModel(id: 3, name: "Suplantación de identidad", icon: "person.crop.circle.badge.exclamationmark"),
         likes: 498

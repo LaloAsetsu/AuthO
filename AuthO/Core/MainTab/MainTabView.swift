@@ -21,7 +21,7 @@ struct MainTabView: View {
                 }
                 .tag(0)
             
-            FeedView()
+            FeedView(selectedIndex: $selectedIndex)
                 .onTapGesture {
                     selectedIndex = 1
                 }
