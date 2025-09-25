@@ -12,7 +12,7 @@ struct AddReportView: View {
     @State private var title: String = ""
     @State private var imageURL: String = ""
     @State private var description: String = ""
-    @State private var category: String = ""
+    @State private var category: CategoryModel?
     
     var body: some View {
         NavigationView {
@@ -49,9 +49,8 @@ struct AddReportView: View {
                     HStack{
                         Text("Categoria")
                         Spacer()
-                        // drop down
-                        Text("Categogoria <>")
-                            .foregroundStyle(.blue)
+                        
+                        CategoryMenuView(selectedCategory: $category)
                     }
                 }
                 

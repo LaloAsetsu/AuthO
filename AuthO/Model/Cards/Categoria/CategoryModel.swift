@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct CategoryModel: Codable {
+struct CategoryModel: Codable, Equatable {
     let id: Int
     let name: String
     let icon: String

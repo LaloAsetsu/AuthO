@@ -10,6 +10,7 @@ import SwiftUI
 struct FeedView: View {
     @Binding var selectedIndex: Int
     @State private var showAddReport: Bool = false
+    @State private var selectedCategory: CategoryModel? = nil
     
     var body: some View {
         NavigationView{
@@ -18,10 +19,22 @@ struct FeedView: View {
                     Divider()
                         .padding(.top, 170)
                     
-                    ForEach(ExampleCards.cards, id: \.titulo) { card in
-                        NormalReportCardView(title: card.titulo, url: card.url, imageUrl: card.imageUrl, description: card.descripcion, likes: card.likes, category: card.categoria)
+                    let filteredCards = selectedCategory == nil
+                        ? ExampleCards.cards
+                        : ExampleCards.cards.filter { $0.categoria == selectedCategory }
+                    
+                    ForEach(filteredCards, id: \.titulo) { card in
+                        NormalReportCardView(
+                                title: card.titulo,
+                                url: card.url,
+                                imageUrl: card.imageUrl,
+                                description: card.descripcion,
+                                likes: card.likes,
+                                category: card.categoria
+                            )
                             .padding(.horizontal)
                             .padding(.vertical, 8)
+                        
                     }
                     
                     Spacer()
@@ -41,6 +54,12 @@ struct FeedView: View {
                         }
                         .tint(Color(.systemBlue))
                     }
+                    
+                    ToolbarItem(placement: .topBarTrailing){
+                        CategoryMenuView(selectedCategory: $selectedCategory)
+                        
+                    }
+                    
                     
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
