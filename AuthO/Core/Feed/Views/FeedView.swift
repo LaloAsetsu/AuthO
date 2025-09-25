@@ -24,14 +24,7 @@ struct FeedView: View {
                         : ExampleCards.cards.filter { $0.categoria == selectedCategory }
                     
                     ForEach(filteredCards, id: \.titulo) { card in
-                        NormalReportCardView(
-                                title: card.titulo,
-                                url: card.url,
-                                imageUrl: card.imageUrl,
-                                description: card.descripcion,
-                                likes: card.likes,
-                                category: card.categoria
-                            )
+                        NormalReportCardView(report: card)
                             .padding(.horizontal)
                             .padding(.vertical, 8)
                         

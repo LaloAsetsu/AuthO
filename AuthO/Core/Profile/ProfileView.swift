@@ -28,7 +28,7 @@ struct ProfileView: View {
                     .padding(.horizontal)
             
                     ForEach(ExampleCards.cards, id: \.titulo) { card in
-                        ReportCard(title: card.titulo, url: card.url, description: card.descripcion, category: card.categoria)
+                        ReportCard(report: card)
                             .padding(.horizontal)
                             .padding(.vertical, 8)
                     }

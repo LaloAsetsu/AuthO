@@ -10,27 +10,19 @@ import SwiftUI
 import Kingfisher
 
 struct NormalReportCardView: View {
-    let title: String
-    let url: String
-    let imageUrl: String
-    let description: String
-    let likes: Int
-    
-    let category: CategoryModel
-    
-    let accepted = true
+    let report: CardModel
     
     var body: some View {
         Card {
             VStack(alignment: .leading){
-                Text(title)
+                Text(report.titulo)
                     .font(.title.bold())
                 
-                Text(url)
+                Text(report.url)
                     .font(.caption)
                     .foregroundStyle(.blue)
                 
-                KFImage(URL(string: imageUrl)!)
+                KFImage(URL(string: report.imageUrl)!)
                     .resizable()
                     .scaledToFill()
                     .frame(width: 340, height: 170)
@@ -41,7 +33,7 @@ struct NormalReportCardView: View {
                     .shadow(color: .gray.opacity(80), radius: 5, x:0, y:0)
                     .padding(.top, 5)
                 
-                Text(description)
+                Text(report.descripcion)
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
                     .lineLimit(8)
@@ -51,7 +43,7 @@ struct NormalReportCardView: View {
                 
                 Spacer()
                 
-                CategoryField(categoryName: category.name, icon: category.icon, color: category.categoryColor, sideView: likeView)
+                CategoryField(category: report.categoria, sideView: likeView)
                 
                 
                 
@@ -74,7 +66,7 @@ extension NormalReportCardView {
             }
             .foregroundStyle(.black)
             
-            Text("\(likes)")
+            Text("\(report.likes)")
         }
     }
 }

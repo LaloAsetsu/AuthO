@@ -50,7 +50,7 @@ struct SearchReportCardView: View {
                 
                 Spacer()
                 
-                CategoryField(categoryName: "Casa", icon: "house", color: .green, sideView: EmptyView())
+//                CategoryField(category: category, sideView: EmptyView())
                 
                 VStack(alignment: .leading, spacing: 4){
                     Text("Campos Encontrados")

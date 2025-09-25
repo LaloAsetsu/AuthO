@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct CategoryField<SideView: View>: View {
-    let categoryName: String
-    let icon: String
-    let color: Color
+    let category: CategoryModel
     let sideView: SideView
     
     var body: some View {
@@ -21,12 +19,12 @@ struct CategoryField<SideView: View>: View {
             
             HStack{
                 HStack(spacing: 5){
-                    Image(systemName: icon)
+                    Image(systemName: category.icon)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 15, height: 15)
                     
-                    Text(categoryName)
+                    Text(category.name)
                         .font(.footnote)
                 }
                 .padding(.horizontal, 10)
@@ -35,7 +33,7 @@ struct CategoryField<SideView: View>: View {
                     Capsule()
                         .stroke(lineWidth: 1)
                 )
-                .foregroundStyle(color)
+                .foregroundStyle(category.categoryColor)
                 
                 Spacer()
                 
@@ -46,5 +44,5 @@ struct CategoryField<SideView: View>: View {
 }
 
 #Preview {
-    CategoryField(categoryName: "Casa", icon: "house", color: .green, sideView: EmptyView())
+    CategoryField(category: CategoryModel(id: 1, name: "Casa", icon: "house"), sideView: EmptyView())
 }
