@@ -14,7 +14,6 @@ struct SignInView: View {
 
     var body: some View {
         VStack{
-            NavigationLink(destination: MainTabView().toolbar(.hidden), isActive: $sesion.logged, label:{ })
             
             Image("logo")
                 .frame(width: 200, height: 200)

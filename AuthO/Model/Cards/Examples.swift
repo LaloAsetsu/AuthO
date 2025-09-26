@@ -24,87 +24,213 @@ struct ExampleCategories {
     ]
 }
 
+struct ExampleUsers {
+    static let ana = UserModel(
+        id: "u1",
+        name: "Ana López",
+        email: "ana.lopez@example.com",
+        creationDate: Date(timeIntervalSinceNow: -86400 * 14), // ~200 days ago
+        profileImageUrl: "https://randomuser.me/api/portraits/women/1.jpg",
+        updateDate: Date()
+    )
+
+    static let carlos = UserModel(
+        id: "u2",
+        name: "Carlos Ramírez",
+        email: "carlos.ramirez@example.com",
+        creationDate: Date(timeIntervalSinceNow: -86400 * 150),
+        profileImageUrl: "https://randomuser.me/api/portraits/men/2.jpg",
+        updateDate: Date()
+    )
+
+    static let maria = UserModel(
+        id: "u3",
+        name: "María Fernández",
+        email: "maria.fernandez@example.com",
+        creationDate: Date(timeIntervalSinceNow: -86400 * 90),
+        profileImageUrl: "https://randomuser.me/api/portraits/women/3.jpg",
+        updateDate: Date()
+    )
+
+    static let pedro = UserModel(
+        id: "u4",
+        name: "Pedro Sánchez",
+        email: "pedro.sanchez@example.com",
+        creationDate: Date(timeIntervalSinceNow: -86400 * 50),
+        profileImageUrl: "https://randomuser.me/api/portraits/men/4.jpg",
+        updateDate: Date()
+    )
+
+    static let all: [UserModel] = [ana, carlos, maria, pedro]
+}
+
+struct ExampleComments {
+    static let comment1 = ComentaryModel(
+        user: ExampleUsers.carlos,
+        content: "Me pasó algo similar, perdí dinero en una tienda en línea falsa.",
+        createdAt: Date(timeIntervalSinceNow: -86400 * 5),
+        likes: 23,
+        Comments: []
+    )
+
+    static let comment2 = ComentaryModel(
+        user: ExampleUsers.maria,
+        content: "Gracias por compartir, voy a tener más cuidado con este tipo de correos.",
+        createdAt: Date(timeIntervalSinceNow: -86400 * 2),
+        likes: 15,
+        Comments: []
+    )
+
+    static let replyToComment3 = ComentaryModel(
+        user: ExampleUsers.ana,
+        content: "Sí, es mejor siempre verificar la dirección del remitente.",
+        createdAt: Date(timeIntervalSinceNow: -86400),
+        likes: 7,
+        Comments: []
+    )
+
+    static let comment3 = ComentaryModel(
+        user: ExampleUsers.maria,
+        content: "Yo también caí en una app fraudulenta, muy parecido a este caso.",
+        createdAt: Date(timeIntervalSinceNow: -86400 * 3),
+        likes: 9,
+        Comments: [replyToComment3]
+    )
+
+    static let all: [ComentaryModel] = [comment1, comment2, comment3]
+}
+
 struct ExampleCards {
     static let cards: [CardModel] = [
         CardModel(
+            id: 1001,
             titulo: "Tienda electrónica falsa",
+            descripcion: "Ofrecía laptops a precios muy bajos. Los clientes nunca recibieron los productos.",
             url: "https://www.alertafraude.mx/reportes/1001",
             imageUrl: "https://images-wixmp-530a50041672c69d335ba4cf.wixmp.com/templates/image/34041b678f8322dd95446ca0e0ee3d4caebb59008a7aa3f8922a8461c268fe6d1617888011678.jpg",
-            descripcion: "Ofrecía laptops a precios muy bajos. Los clientes nunca recibieron los productos.",
+            user: ExampleUsers.ana,
             categoria: ExampleCategories.compras,
-            likes: 124
+            creationDate: Date(timeIntervalSinceNow: -86400 * 12),
+            status: "active",
+            likes: 124,
+            comments: [ExampleComments.comment1]
         ),
         CardModel(
+            id: 1002,
             titulo: "Correo de phishing bancario",
+            descripcion: "Usuarios recibieron correos que simulaban ser de un banco, solicitando datos de acceso.",
             url: "https://www.alertafraude.mx/reportes/1002",
             imageUrl: "https://mbluxury1.s3.amazonaws.com/2020/07/14065242/BankWAW-website-design.jpg",
-            descripcion: "Usuarios recibieron correos que simulaban ser de un banco, solicitando datos de acceso.",
+            user: ExampleUsers.carlos,
             categoria: ExampleCategories.phishing,
-            likes: 312
+            creationDate: Date(timeIntervalSinceNow: -86400 * 11),
+            status: "active",
+            likes: 312,
+            comments: [ExampleComments.comment2]
         ),
         CardModel(
+            id: 1003,
             titulo: "App de descuentos fraudulentos",
+            descripcion: "Una aplicación prometía grandes descuentos, pero robaba datos bancarios.",
             url: "https://www.alertafraude.mx/reportes/1003",
             imageUrl: "https://www.templateshub.net/uploads/1570009401%20CouponDay%20Clean%20Premium%20Coupon%20Template.jpg",
-            descripcion: "Una aplicación prometía grandes descuentos, pero robaba datos bancarios.",
+            user: ExampleUsers.maria,
             categoria: ExampleCategories.apps,
-            likes: 198
+            creationDate: Date(timeIntervalSinceNow: -86400 * 10),
+            status: "active",
+            likes: 198,
+            comments: [ExampleComments.comment3]
         ),
         CardModel(
+            id: 1004,
             titulo: "Falsos créditos inmediatos",
+            descripcion: "Un sitio pedía depósitos por 'gastos de gestión' y nunca otorgaba el crédito.",
             url: "https://www.alertafraude.mx/reportes/1004",
             imageUrl: "https://themewagon.com/wp-content/uploads/2020/11/credit-1.jpg",
-            descripcion: "Un sitio pedía depósitos por 'gastos de gestión' y nunca otorgaba el crédito.",
+            user: ExampleUsers.pedro,
             categoria: ExampleCategories.bancos,
-            likes: 265
+            creationDate: Date(timeIntervalSinceNow: -86400 * 9),
+            status: "active",
+            likes: 265,
+            comments: []
         ),
         CardModel(
+            id: 1005,
             titulo: "Perfil falso en redes sociales",
+            descripcion: "Cuentas se hacían pasar por celebridades para pedir dinero a seguidores.",
             url: "https://www.alertafraude.mx/reportes/1005",
             imageUrl: "https://miro.medium.com/v2/resize:fit:1400/0*sVJDL0GdqXDxzynj.jpg",
-            descripcion: "Cuentas se hacían pasar por celebridades para pedir dinero a seguidores.",
+            user: ExampleUsers.ana,
             categoria: ExampleCategories.redes,
-            likes: 432
+            creationDate: Date(timeIntervalSinceNow: -86400 * 8),
+            status: "active",
+            likes: 432,
+            comments: []
         ),
         CardModel(
+            id: 1006,
             titulo: "Inversión en criptomonedas inexistentes",
+            descripcion: "Un sitio ofrecía inversiones en criptomonedas que no existían.",
             url: "https://www.alertafraude.mx/reportes/1006",
             imageUrl: "https://themewagon.com/wp-content/uploads/2020/11/crypto-1.jpg",
-            descripcion: "Un sitio ofrecía inversiones en criptomonedas que no existían.",
+            user: ExampleUsers.carlos,
             categoria: ExampleCategories.inversion,
-            likes: 289
+            creationDate: Date(timeIntervalSinceNow: -86400 * 7),
+            status: "active",
+            likes: 289,
+            comments: []
         ),
         CardModel(
+            id: 1007,
             titulo: "Publicidad de viajes falsos",
+            descripcion: "Promocionaban viajes todo incluido a mitad de precio. Nunca se confirmaron boletos.",
             url: "https://www.alertafraude.mx/reportes/1007",
             imageUrl: "https://mbluxury1.s3.amazonaws.com/2024/06/25074513/Travel-Website-Design-Tour-Radar.jpg",
-            descripcion: "Promocionaban viajes todo incluido a mitad de precio. Nunca se confirmaron boletos.",
+            user: ExampleUsers.maria,
             categoria: ExampleCategories.viajes,
-            likes: 150
+            creationDate: Date(timeIntervalSinceNow: -86400 * 6),
+            status: "active",
+            likes: 150,
+            comments: []
         ),
         CardModel(
+            id: 1008,
             titulo: "Venta de consolas inexistentes",
+            descripcion: "Prometían entregas inmediatas de consolas en preventa, pero nunca se enviaron.",
             url: "https://www.alertafraude.mx/reportes/1008",
             imageUrl: "https://static.vecteezy.com/system/resources/previews/009/521/560/non_2x/online-gaming-concept-website-landing-page-with-game-console-free-illustration-background-free-vector.jpg",
-            descripcion: "Prometían entregas inmediatas de consolas en preventa, pero nunca se enviaron.",
+            user: ExampleUsers.pedro,
             categoria: ExampleCategories.compras,
-            likes: 375
+            creationDate: Date(timeIntervalSinceNow: -86400 * 5),
+            status: "active",
+            likes: 375,
+            comments: []
         ),
         CardModel(
+            id: 1009,
             titulo: "Correo con archivo sospechoso",
+            descripcion: "Un correo con un supuesto recibo contenía un archivo malicioso.",
             url: "https://www.alertafraude.mx/reportes/1009",
             imageUrl: "https://www.lifewire.com/thmb/GYpSjFecUJX2Ktls5ZCKPIDvc_g=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gmail-select-insert-link-2681bddad62a4b34afe7c732995bd003.jpg",
-            descripcion: "Un correo con un supuesto recibo contenía un archivo malicioso.",
+            user: ExampleUsers.ana,
             categoria: ExampleCategories.phishing,
-            likes: 210
+            creationDate: Date(timeIntervalSinceNow: -86400 * 4),
+            status: "active",
+            likes: 210,
+            comments: []
         ),
         CardModel(
+            id: 1010,
             titulo: "Suplantación de identidad en trámites",
+            descripcion: "Un portal imitaba páginas de gobierno para robar datos personales.",
             url: "https://www.alertafraude.mx/reportes/1010",
             imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4y9X3Kv9wa0Biax50gBdST0EwkhQPZQG6ow&s",
-            descripcion: "Un portal imitaba páginas de gobierno para robar datos personales.",
+            user: ExampleUsers.carlos,
             categoria: ExampleCategories.identidad,
-            likes: 498
+            creationDate: Date(timeIntervalSinceNow: -86400 * 3),
+            status: "active",
+            likes: 498,
+            comments: []
         )
     ]
 }

@@ -13,8 +13,11 @@ struct ReportDetailView: View {
     var body: some View {
         NavigationStack{
             ScrollView{
-                NormalReportCardView(report: report)
+                NormalReportCardView(report: report, detail: false)
                     .padding()
+                
+                Divider()
+                    .padding(.horizontal, 10)
                 
             }
             .navigationTitle("Reporte")

@@ -11,6 +11,7 @@ import Kingfisher
 
 struct NormalReportCardView: View {
     let report: CardModel
+    let detail: Bool
     
     var body: some View {
         Card {
@@ -43,7 +44,7 @@ struct NormalReportCardView: View {
                 
                 Spacer()
                 
-                CategoryField(category: report.categoria, sideView: likeView)
+                CategoryField(category: report.categoria, sideView: !detail ? AnyView(likeView) : AnyView(commentView))
                 
                 
                 
@@ -64,9 +65,22 @@ extension NormalReportCardView {
             } label: {
                 Image(systemName: "hand.thumbsup")
             }
-            .foregroundStyle(.black)
             
             Text("\(report.likes)")
         }
+        .foregroundStyle(.gray)
+    }
+    
+    var commentView: some View {
+        HStack{
+            Button{
+                print("le diste comment")
+            } label: {
+                Image(systemName: "bubble")
+            }
+            
+            Text("\(report.comments.count)")
+        }
+        .foregroundStyle(.gray)
     }
 }
