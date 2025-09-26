@@ -1,25 +1,25 @@
 //
-//  ReportDetailView.swift
+//  DetailCommentView.swift
 //  AuthO
 //
-//  Created by Leoni Bernabe on 25/09/25.
+//  Created by Leoni Bernabe on 26/09/25.
 //
 
 import SwiftUI
 
-struct ReportDetailView: View {
-    @State var report: CardModel
+struct DetailCommentView: View {
+    @State var comment: ComentaryModel
     
     var body: some View {
         NavigationStack{
             ScrollView{
-                NormalReportCardView(report: report, detail: true)
-                    .padding()
+                CommentView(comment: comment)
+                    .padding(.vertical, 50)
                 
                 Divider()
                     .padding(.horizontal, 10)
                 
-                if !report.comments.isEmpty {
+                if !comment.comments.isEmpty {
                     HStack{
                         Text("Comments")
                             .font(.caption)
@@ -29,7 +29,7 @@ struct ReportDetailView: View {
                         Spacer()
                     }
                     
-                    ForEach(report.comments, id: \.id) { comment in
+                    ForEach(comment.comments, id: \.id) { comment in
                         NavigationLink {
                             DetailCommentView(comment: comment)
                         } label : {
@@ -41,12 +41,12 @@ struct ReportDetailView: View {
                 }
                 
             }
-            .navigationTitle("Reporte")
+            .navigationTitle("Comment")
             .navigationBarTitleDisplayMode( .inline )
         }
     }
 }
 
 #Preview {
-    ReportDetailView(report: ExampleCards.cards[0])
+    DetailCommentView(comment: ExampleComments.comment3)
 }
