@@ -54,30 +54,18 @@ struct AddReportView: View {
                     }
                 }
                 
+                Button{
+                    print("Publicando Reporte")
+                } label : {
+                    HStack{
+                        Spacer()
+                        Text("Publicar")
+                        Spacer()
+                    }
+                }
             }
             .navigationTitle("Registrar Nuevo Reporte")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        showAddReport = false
-                    } label: {
-                        Text("Cancel")
-                    }
-                    .tint(Color(.systemBlue))
-                }
-                
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        print("registrando reporte")
-                        showAddReport = false
-                    } label: {
-                        Text("Add")
-                    }
-                    .tint(Color(.systemBlue))
-                }
-            }
         }
     }
 }

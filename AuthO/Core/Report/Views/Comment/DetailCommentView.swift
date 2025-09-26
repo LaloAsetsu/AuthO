@@ -12,34 +12,39 @@ struct DetailCommentView: View {
     
     var body: some View {
         NavigationStack{
-            ScrollView{
-                CommentView(comment: comment)
-                    .padding(.vertical, 50)
-                
-                Divider()
-                    .padding(.horizontal, 10)
-                
-                if !comment.comments.isEmpty {
-                    HStack{
-                        Text("Comments")
-                            .font(.caption)
-                            .foregroundStyle(.gray)
-                            .padding(.horizontal, 20)
-                            .padding(.top, 20)
-                        Spacer()
-                    }
+            ZStack (alignment: .bottom){
+                ScrollView{
+                    CommentView(comment: comment)
+                        .padding(.vertical, 50)
                     
-                    ForEach(comment.comments, id: \.id) { comment in
-                        NavigationLink {
-                            DetailCommentView(comment: comment)
-                        } label : {
-                            CommentView(comment: comment)
-                                .padding(.vertical, 40)
+                    Divider()
+                        .padding(.horizontal, 10)
+                    
+                    if !comment.comments.isEmpty {
+                        HStack{
+                            Text("Comments")
+                                .font(.caption)
+                                .foregroundStyle(.gray)
+                                .padding(.horizontal, 20)
+                                .padding(.top, 20)
+                            Spacer()
                         }
-                        .buttonStyle(.plain)
+                        
+                        ForEach(comment.comments, id: \.id) { comment in
+                            NavigationLink {
+                                DetailCommentView(comment: comment)
+                            } label : {
+                                CommentView(comment: comment)
+                                    .padding(.vertical, 40)
+                            }
+                            .buttonStyle(.plain)
+                        }
                     }
                 }
                 
+                FloatingInputText(text: .constant("")){
+                    
+                }
             }
             .navigationTitle("Comment")
             .navigationBarTitleDisplayMode( .inline )

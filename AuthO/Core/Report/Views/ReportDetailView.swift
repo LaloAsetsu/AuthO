@@ -1,48 +1,54 @@
-//
-//  ReportDetailView.swift
-//  AuthO
-//
-//  Created by Leoni Bernabe on 25/09/25.
-//
-
 import SwiftUI
+import Kingfisher
 
 struct ReportDetailView: View {
     @State var report: CardModel
-    
+    @State private var replyText: String = ""
+
     var body: some View {
-        NavigationStack{
-            ScrollView{
-                NormalReportCardView(report: report, detail: true)
-                    .padding()
+        NavigationStack {
+            ZStack(alignment: .bottom) {
                 
-                Divider()
-                    .padding(.horizontal, 10)
-                
-                if !report.comments.isEmpty {
-                    HStack{
-                        Text("Comments")
-                            .font(.caption)
-                            .foregroundStyle(.gray)
-                            .padding(.horizontal, 20)
-                            .padding(.top, 20)
-                        Spacer()
-                    }
-                    
-                    ForEach(report.comments, id: \.id) { comment in
-                        NavigationLink {
-                            DetailCommentView(comment: comment)
-                        } label : {
-                            CommentView(comment: comment)
-                                .padding(.vertical, 40)
+                ScrollView {
+                    VStack(spacing: 0) {
+                        NormalReportCardView(report: report, detail: true)
+                            .padding()
+                        
+                        Divider()
+                            .padding(.horizontal, 10)
+                        
+                        if !report.comments.isEmpty {
+                            HStack {
+                                Text("Comments")
+                                    .font(.caption)
+                                    .foregroundStyle(.gray)
+                                    .padding(.horizontal, 20)
+                                    .padding(.top, 20)
+                                Spacer()
+                            }
+                            
+                            ForEach(report.comments, id: \.id) { comment in
+                                NavigationLink {
+                                    DetailCommentView(comment: comment)
+                                } label: {
+                                    CommentView(comment: comment)
+                                        .padding(.vertical, 40)
+                                }
+                                .buttonStyle(.plain)
+                            }
                         }
-                        .buttonStyle(.plain)
+                        
+                        Spacer(minLength: 80)
                     }
                 }
                 
+                
+                FloatingInputText(text: $replyText){
+                    
+                }
             }
             .navigationTitle("Reporte")
-            .navigationBarTitleDisplayMode( .inline )
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
