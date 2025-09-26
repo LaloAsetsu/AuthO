@@ -30,7 +30,7 @@ struct ExampleUsers {
         name: "Ana López",
         email: "ana.lopez@example.com",
         creationDate: Date(timeIntervalSinceNow: -86400 * 14), // ~200 days ago
-        profileImageUrl: "https://randomuser.me/api/portraits/women/1.jpg",
+        profileImageUrl: "https://d6ehjqrqtzoun.cloudfront.net/d71e1118-c303-4343-adba-aaccb71072f0.1202228062",
         updateDate: Date()
     )
 
@@ -39,7 +39,7 @@ struct ExampleUsers {
         name: "Carlos Ramírez",
         email: "carlos.ramirez@example.com",
         creationDate: Date(timeIntervalSinceNow: -86400 * 150),
-        profileImageUrl: "https://randomuser.me/api/portraits/men/2.jpg",
+        profileImageUrl: "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",
         updateDate: Date()
     )
 
@@ -48,7 +48,7 @@ struct ExampleUsers {
         name: "María Fernández",
         email: "maria.fernandez@example.com",
         creationDate: Date(timeIntervalSinceNow: -86400 * 90),
-        profileImageUrl: "https://randomuser.me/api/portraits/women/3.jpg",
+        profileImageUrl: "https://www.instyle.com/thmb/_nQAXWyjXg3PhIqXsHQcFHDT_HI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dua-ce1b345ce2134467b05c26f075c22d34.jpg",
         updateDate: Date()
     )
 
@@ -57,7 +57,7 @@ struct ExampleUsers {
         name: "Pedro Sánchez",
         email: "pedro.sanchez@example.com",
         creationDate: Date(timeIntervalSinceNow: -86400 * 50),
-        profileImageUrl: "https://randomuser.me/api/portraits/men/4.jpg",
+        profileImageUrl: "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80",
         updateDate: Date()
     )
 
@@ -66,35 +66,39 @@ struct ExampleUsers {
 
 struct ExampleComments {
     static let comment1 = ComentaryModel(
-        user: ExampleUsers.carlos,
+        id: 1,
+        user: ExampleUsers.ana,
         content: "Me pasó algo similar, perdí dinero en una tienda en línea falsa.",
         createdAt: Date(timeIntervalSinceNow: -86400 * 5),
         likes: 23,
-        Comments: []
+        comments: []
     )
 
     static let comment2 = ComentaryModel(
+        id: 2,
         user: ExampleUsers.maria,
         content: "Gracias por compartir, voy a tener más cuidado con este tipo de correos.",
         createdAt: Date(timeIntervalSinceNow: -86400 * 2),
         likes: 15,
-        Comments: []
+        comments: []
     )
 
     static let replyToComment3 = ComentaryModel(
+        id: 3,
         user: ExampleUsers.ana,
         content: "Sí, es mejor siempre verificar la dirección del remitente.",
         createdAt: Date(timeIntervalSinceNow: -86400),
         likes: 7,
-        Comments: []
+        comments: []
     )
 
     static let comment3 = ComentaryModel(
+        id: 4,
         user: ExampleUsers.maria,
         content: "Yo también caí en una app fraudulenta, muy parecido a este caso.",
         createdAt: Date(timeIntervalSinceNow: -86400 * 3),
         likes: 9,
-        Comments: [replyToComment3]
+        comments: [replyToComment3]
     )
 
     static let all: [ComentaryModel] = [comment1, comment2, comment3]
@@ -113,7 +117,7 @@ struct ExampleCards {
             creationDate: Date(timeIntervalSinceNow: -86400 * 12),
             status: "active",
             likes: 124,
-            comments: [ExampleComments.comment1]
+            comments: [ExampleComments.comment1, ExampleComments.comment2, ExampleComments.comment3, ExampleComments.replyToComment3]
         ),
         CardModel(
             id: 1002,

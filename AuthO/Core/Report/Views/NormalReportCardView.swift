@@ -44,7 +44,7 @@ struct NormalReportCardView: View {
                 
                 Spacer()
                 
-                CategoryField(category: report.categoria, sideView: !detail ? AnyView(likeView) : AnyView(commentView))
+                CategoryField(category: report.categoria, sideView: !detail ? AnyView(LikeView(likes: report.likes){}) : AnyView(CommentsView(comments: report.comments.count){}))
                 
                 
                 
@@ -54,33 +54,5 @@ struct NormalReportCardView: View {
         }
         .frame(width: 380)
         .frame(maxHeight: 450)
-    }
-}
-
-extension NormalReportCardView {
-    var likeView: some View {
-        HStack{
-            Button{
-                print("le diste like")
-            } label: {
-                Image(systemName: "hand.thumbsup")
-            }
-            
-            Text("\(report.likes)")
-        }
-        .foregroundStyle(.gray)
-    }
-    
-    var commentView: some View {
-        HStack{
-            Button{
-                print("le diste comment")
-            } label: {
-                Image(systemName: "bubble")
-            }
-            
-            Text("\(report.comments.count)")
-        }
-        .foregroundStyle(.gray)
     }
 }

@@ -8,10 +8,11 @@
 import Foundation
 
 struct ComentaryModel: Codable {
+    let id: Int
     let user: UserModel
     let content: String
     let createdAt: Date
     
     let likes: Int
-    let Comments: [ComentaryModel]
+    let comments: [ComentaryModel]
 }

@@ -19,6 +19,21 @@ struct ReportDetailView: View {
                 Divider()
                     .padding(.horizontal, 10)
                 
+                HStack{
+                    Text("Comments")
+                        .font(.caption)
+                        .foregroundStyle(.gray)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 20)
+                    Spacer()
+                }
+                
+                ForEach(report.comments, id: \.id) { comment in
+                    CommentView(comment: comment)
+                        .padding(.vertical, 40)
+                }
+                
+                
             }
             .navigationTitle("Reporte")
             .navigationBarTitleDisplayMode( .inline )
@@ -27,5 +42,5 @@ struct ReportDetailView: View {
 }
 
 #Preview {
-    ReportDetailView(report: ExampleCards.cards.first!)
+    ReportDetailView(report: ExampleCards.cards[0])
 }
