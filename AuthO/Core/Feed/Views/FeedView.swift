@@ -11,6 +11,7 @@ struct FeedView: View {
     @Binding var selectedIndex: Int
     @State private var showAddReport: Bool = false
     @State private var selectedCategory: CategoryModel? = nil
+    @State private var selectedReport: CardModel? = nil
     
     var body: some View {
         NavigationView{
@@ -24,9 +25,16 @@ struct FeedView: View {
                         : ExampleCards.cards.filter { $0.categoria == selectedCategory }
                     
                     ForEach(filteredCards, id: \.titulo) { card in
-                        NormalReportCardView(report: card, detail: false)
-                            .padding(.horizontal)
-                            .padding(.vertical, 8)
+                        
+                        Button {
+                            selectedReport = card
+                        } label : {
+                            NormalReportCardView(report: card, detail: false)
+                                .padding(.horizontal)
+                                .padding(.vertical, 8)
+                        }
+                        .buttonStyle(.plain)
+                        
                         
                     }
                     
@@ -67,6 +75,9 @@ struct FeedView: View {
             }
             .sheet(isPresented: $showAddReport) {
                 AddReportView(showAddReport: $showAddReport)
+            }
+            .sheet(item: $selectedReport){ report in
+                ReportDetailView(report: report)
             }
             .ignoresSafeArea()
         }

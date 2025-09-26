@@ -28,12 +28,13 @@ struct CommentView: View {
                             Text("2d")
                         }
                         
-                        VStack {
+                        VStack (alignment: .leading){
                             Text(comment.content)
                             Spacer()
                         }
                         .frame(height: 80)
                     }
+                    .foregroundStyle(.black)
                 }
                 
                 HStack{

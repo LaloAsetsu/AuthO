@@ -29,8 +29,14 @@ struct ReportDetailView: View {
                 }
                 
                 ForEach(report.comments, id: \.id) { comment in
-                    CommentView(comment: comment)
-                        .padding(.vertical, 40)
+                    NavigationLink {
+                        CommentView(comment: comment)
+                            .padding(.vertical, 40)
+                    } label : {
+                        CommentView(comment: comment)
+                            .padding(.vertical, 40)
+                    }
+                    .buttonStyle(.plain)
                 }
                 
                 
