@@ -39,7 +39,7 @@ struct MainTabView: View {
                 }
                 .tag(2)
             
-            SearchView()
+            SearchView(selectedIndex: $selectedIndex)
                 .onTapGesture {
                     selectedIndex = 3
                 }
