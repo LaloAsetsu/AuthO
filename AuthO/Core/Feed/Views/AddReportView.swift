@@ -10,6 +10,7 @@ import SwiftUI
 struct AddReportView: View {
     @Binding var showAddReport: Bool
     @State private var title: String = ""
+    @State private var url: String = ""
     @State private var imageURL: String = ""
     @State private var description: String = ""
     @State private var category: CategoryModel?
@@ -19,6 +20,10 @@ struct AddReportView: View {
             Form{
                 Section("Titulo"){
                     TextField("Titulo", text: $title)
+                }
+                
+                Section("URL"){
+                    TextField("URL", text: $url)
                 }
                 
                 Section("Imágen"){
