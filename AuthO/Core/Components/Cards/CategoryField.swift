@@ -13,7 +13,7 @@ struct CategoryField<SideView: View>: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4){
-            Text("Categorías")
+            Text("Categoría")
                 .font(.caption)
                 .foregroundStyle(.secondary)
             

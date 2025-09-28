@@ -44,7 +44,7 @@ struct ReportDetailView: View {
                 
                 
                 FloatingInputText(text: $replyText){
-                    
+                    // aqui va lo que se manda en el mensaje
                 }
             }
             .navigationTitle("Reporte")

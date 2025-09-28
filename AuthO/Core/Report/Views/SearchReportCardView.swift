@@ -10,26 +10,19 @@ import SwiftUI
 import Kingfisher
 
 struct SearchReportCardView: View {
-    let title = "Hogar Limpio"
-    let url = "www.hogarLimpio.com"
-    let description = "Esta página anuncia una licuadora multifuncional con varias velocidades y vaso de vidrio resistente, pero cuando llega el pedido solo es una licuadora de plástico pequeña y frágil, muy diferente a lo mostrado."
-    
-    let category = "Casa"
-    let icon = "house"
-    
-    let accepted = true
+    let report: SearchCardModel
     
     var body: some View {
         Card {
             VStack(alignment: .leading){
-                Text(title)
+                Text(report.card.titulo)
                     .font(.title.bold())
                 
-                Text(url)
+                Text(report.card.url)
                     .font(.caption)
                     .foregroundStyle(.blue)
                 
-                KFImage(URL(string: "https://53.fs1.hubspotusercontent-na1.net/hub/53/hubfs/Telerik.webp?width=650&height=409&name=Telerik.webp")!)
+                KFImage(URL(string: report.card.imageUrl)!)
                     .resizable()
                     .scaledToFill()
                     .frame(width: 340, height: 170)
@@ -40,7 +33,7 @@ struct SearchReportCardView: View {
                     .shadow(color: .gray.opacity(80), radius: 5, x:0, y:0)
                     .padding(.top, 5)
                 
-                Text(description)
+                Text(report.card.descripcion)
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
                     .lineLimit(8)
@@ -49,8 +42,9 @@ struct SearchReportCardView: View {
                     .foregroundStyle(.secondary)
                 
                 Spacer()
+                    .frame(height: 40)
                 
-//                CategoryField(category: category, sideView: EmptyView())
+                CategoryField(category: report.card.categoria, sideView: EmptyView())
                 
                 VStack(alignment: .leading, spacing: 4){
                     Text("Campos Encontrados")
@@ -58,9 +52,9 @@ struct SearchReportCardView: View {
                         .foregroundStyle(.secondary)
                     
                     HStack{
-                        filter
-                        filter
-                        
+                        ForEach(report.relatedFields, id:\.self) { field in
+                            filter(field)
+                        }
                         Spacer()
                     }
                 }
@@ -76,13 +70,13 @@ struct SearchReportCardView: View {
 }
 
 #Preview {
-    SearchReportCardView()
+    SearchReportCardView(report: ExampleSeachCards.searchCards[0])
 }
 
 extension SearchReportCardView {
     
-    var filter: some View {
-        HStack{
+    func filter(_ category: String) -> some View {
+        HStack {
             Text(category)
                 .font(.footnote)
         }
