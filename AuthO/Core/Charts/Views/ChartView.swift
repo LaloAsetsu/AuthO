@@ -6,13 +6,165 @@
 //
 
 import SwiftUI
+import Charts
 
 struct ChartView: View {
+    @Binding var selectedIndex: Int
     var body: some View {
-        Text("Chart View")
+        NavigationStack {
+            Form {
+                
+                Section {
+                    NavigationLink {
+                        UsersDailyContributionView()
+                    } label: {
+                        usersDailyContributions
+                            .contentShape(Rectangle())
+                    }
+                    
+                }
+                
+                Section {
+                    NavigationLink {
+                        ReportLikesView()
+                    } label: {
+                        mostLikedReport
+                    }
+                }
+                
+                Section {
+                    NavigationLink {
+                        UserDailyContributionView()
+                    } label: {
+                        userDailyContribution
+                    }
+                }
+                
+                Section {
+                    NavigationLink {
+                        UserDailyLikesView()
+                    } label: {
+                        userDailyLikes
+                    }
+                }
+                
+                
+            }
+            .navigationTitle("Gráficas")
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        selectedIndex = 0
+                    } label: {
+                        Image(systemName: "person.circle.fill")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                            
+                    }
+                    .tint(Color(.systemBlue))
+                }
+                
+            }
+        }
     }
 }
 
 #Preview {
-    ChartView()
+    ChartView(selectedIndex: .constant(0))
 }
+
+extension ChartView {
+    var usersDailyContributions: some View {
+        VStack {
+            Text("El promedio de contribuciones diarias en la semana fue de \(Text("30 al día").bold()) dentro de la aplicación")
+                .listRowSeparator(.hidden)
+            
+            Chart {
+                ForEach(ChartDataExamples.usersContribution, id: \.id) { chartPoint in
+                    BarMark(
+                        x: .value("day", chartPoint.day),
+                        y: .value("contribution", chartPoint.count),
+                        width: .fixed(15)
+                    )
+                }
+                
+            }
+            .chartXAxis(.hidden)
+            .chartYAxis(.hidden)
+            .frame(height: 80)
+            .padding(.horizontal)
+        }
+    }
+    
+    var mostLikedReport: some View {
+        HStack {
+            Text("La pagina del reporte con más likes fue \(Text(ChartDataExamples.mostLikedReport!.title).foregroundColor(.blue)) con un total de \(Text("\(String(format: "%.2f", ChartDataExamples.mostLikedPercentaje))%").bold()) del total")
+                .listRowSeparator(.hidden)
+            
+            Chart(ChartDataExamples.likedReports, id: \.id) { dataItem in
+                SectorMark(angle: .value("Type", dataItem.likes),
+                           innerRadius: .ratio(0.5),
+                           angularInset: 0.5)
+                    .foregroundStyle(by: .value("Type", dataItem.title))
+            }
+            .frame(width: 80, height: 100)
+            .chartLegend(.hidden)
+            
+        }
+    }
+    
+    var userDailyContribution: some View {
+        VStack {
+            Text("Tu día con mas contribuciones del més con fue de \(Text("\(ChartDataExamples.mostContributedDay.contributions) reportes").bold()) el \(ChartDataExamples.mostContributedDay.day,  format: Date.FormatStyle().day().month())")
+                .listRowSeparator(.hidden)
+            
+            Chart {
+                ForEach(ChartDataExamples.userContribution, id: \.id) { chartPoint in
+                    BarMark(
+                        x: .value("day", chartPoint.day),
+                        y: .value("contribution", chartPoint.contributions),
+                        width: .fixed(15)
+                    )
+                    .opacity(Calendar.current.isDateInToday(chartPoint.day) ? 1 : 0.5)
+                }
+                
+            }
+            .chartXAxis(.hidden)
+            .chartYAxis(.hidden)
+            .frame(height: 80)
+            .padding(.horizontal)
+        }
+    }
+    
+    var userDailyLikes: some View {
+        VStack {
+            Text("Mediante tus reportes has ayudado a  \(Text("más de \(ChartDataExamples.totalLikesReports) personas").bold())")
+                .listRowSeparator(.hidden)
+            
+            Chart {
+                ForEach(ChartDataExamples.userDailyLikes, id: \.id) { chartPoint in
+                    LineMark(
+                        x: .value("day", chartPoint.day),
+                        y: .value("contribution", chartPoint.likes),
+                    )
+                    .opacity(Calendar.current.isDateInToday(chartPoint.day) ? 1 : 0.5)
+                    
+                    PointMark(
+                        x: .value("day", chartPoint.day),
+                        y: .value("contribution", chartPoint.likes)
+                    )
+                    .symbol(.circle)
+                    .symbolSize(50) 
+                    .foregroundStyle(.blue)
+                }
+                
+            }
+//            .chartXAxis(.hidden)
+            .chartYAxis(.hidden)
+            .frame(height: 120)
+            .padding(.horizontal)
+        }
+    }
+    
+}
+

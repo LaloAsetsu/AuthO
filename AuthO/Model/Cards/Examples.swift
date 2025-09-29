@@ -30,7 +30,7 @@ struct ExampleUsers {
         name: "Ana López",
         email: "ana.lopez@example.com",
         creationDate: Date(timeIntervalSinceNow: -86400 * 14), // ~200 days ago
-        profileImageUrl: "https://d6ehjqrqtzoun.cloudfront.net/d71e1118-c303-4343-adba-aaccb71072f0.1202228062",
+        profileImageUrl: "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2020/12/star-wars-general-leia-organa-2180815.jpg?tf=3840x",
         updateDate: Date()
     )
 
@@ -48,7 +48,7 @@ struct ExampleUsers {
         name: "María Fernández",
         email: "maria.fernandez@example.com",
         creationDate: Date(timeIntervalSinceNow: -86400 * 90),
-        profileImageUrl: "https://www.instyle.com/thmb/_nQAXWyjXg3PhIqXsHQcFHDT_HI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dua-ce1b345ce2134467b05c26f075c22d34.jpg",
+        profileImageUrl: "https://i.redd.it/zw0i302m0luc1.jpeg",
         updateDate: Date()
     )
 
