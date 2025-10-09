@@ -13,6 +13,7 @@ struct CustonInputField: View {
     let isSecure: Bool
     
     @Binding var text: String
+    var bottomText: String = ""
     
     var body: some View {
         VStack{
@@ -33,6 +34,14 @@ struct CustonInputField: View {
                 .font(.default)
             }
             Divider()
+            
+            HStack{
+                Text(bottomText)
+                    .font(.callout)
+                    .foregroundStyle(Color(.secondaryLabel))
+                Spacer()
+            }
+            .padding(.horizontal)
         }
         
     }
