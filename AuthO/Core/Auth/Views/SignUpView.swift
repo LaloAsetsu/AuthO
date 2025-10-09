@@ -16,6 +16,8 @@ struct SignUpView: View {
     @State private var emailErrors: String = ""
     @State private var passwordErrors: String = ""
     
+    @State private var showAviso: Bool = false
+    
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -44,6 +46,13 @@ struct SignUpView: View {
                         CustonInputField(icon: "lock", placeholder: "Password", isSecure: true, text: $password, bottomText: passwordErrors)
                     }
                     
+                    Button {
+                        showAviso=true
+                    } label: {
+                        Text("Aviso de privacidad")
+                            .underline()
+                    }
+                    .padding(.bottom)
                     
                     Spacer()
                     
@@ -91,6 +100,9 @@ struct SignUpView: View {
         }
         .onChange(of: password) { oldValue, newValue in
             validatePasswordScope(newValue: newValue)
+        }
+        .sheet(isPresented: $showAviso) {
+            AvisoPrivacidadView()
         }
         .ignoresSafeArea()
     }
