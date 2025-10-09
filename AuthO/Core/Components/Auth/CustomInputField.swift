@@ -14,6 +14,7 @@ struct CustonInputField: View {
     
     @Binding var text: String
     var bottomText: String = ""
+    @State var showText: Bool = false
     
     var body: some View {
         VStack{
@@ -26,12 +27,33 @@ struct CustonInputField: View {
                 
                 Group{
                     if isSecure {
-                        SecureField(placeholder, text: $text)
+                        if showText {
+                            TextField(placeholder, text: $text)
+                                .frame(height: 20)
+                        } else {
+                            SecureField(placeholder, text: $text)
+                                .frame(height: 20)
+                        }
+                        
                     } else {
                         TextField(placeholder, text: $text)
                     }
                 }
                 .font(.default)
+                
+                if isSecure {
+                    Button {
+                        showText.toggle()
+                    } label: {
+                        
+                        Image(systemName: showText ? "eye.slash" : "eye")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20, height: 20)
+                            .foregroundStyle(Color(.gray))
+                    }
+                    
+                }
             }
             Divider()
             
