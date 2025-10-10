@@ -11,6 +11,9 @@ import PhotosUI
 struct UploadProfilePhotoView: View {
     @State private var photoPickerItem: PhotosPickerItem?
     @State private var image: UIImage?
+    @State private var openCatpcha: Bool = false
+    
+    @EnvironmentObject var sesion: SessionManager
     
     var body: some View {
         VStack{
@@ -33,13 +36,14 @@ struct UploadProfilePhotoView: View {
             
             Button {
                 // nada
-                
+                // subir la foto a back y lo de image captcha view
+                openCatpcha=true
             } label: {
                 Text("Continue")
                     .font(.headline)
                     .foregroundStyle(.white)
                     .frame(width: 300, height: 50)
-                    .background((image==nil) ? .gray : Color(.systemOrange))
+                    .background((image==nil) ? Color(.systemGray4) : Color(.systemOrange))
                     .clipShape(Capsule())
                     .padding()
             }
@@ -55,6 +59,10 @@ struct UploadProfilePhotoView: View {
                     image = uiImage
                 }
             }
+        }
+        .navigationDestination(isPresented: $openCatpcha){
+            CaptchaView(done: $sesion.logged)
+                .toolbar(.hidden)
         }
         .ignoresSafeArea(edges: .all)
         

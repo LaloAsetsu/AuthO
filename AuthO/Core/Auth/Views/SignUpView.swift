@@ -17,99 +17,109 @@ struct SignUpView: View {
     @State private var passwordErrors: String = ""
     
     @State private var showAviso: Bool = false
+    @State private var showSelectPhoto: Bool = false
     
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        VStack{
-            
-            Image("logo")
-                .frame(width: 200, height: 200)
-                .scaledToFit()
-                .padding(.top, 70)
-            
-            Card{
-                VStack(alignment: .center){
-                    HStack{
-                        Text("Crea tu cuenta!")
-                            .font(.title2)
-                            .fontWeight(.semibold)
+        
+            VStack{
+                
+                Image("logo")
+                    .frame(width: 200, height: 200)
+                    .scaledToFit()
+                    .padding(.top, 70)
+                
+                Card{
+                    VStack(alignment: .center){
+                        HStack{
+                            Text("Crea tu cuenta!")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                            Spacer()
+                        }
+                        
+                        
+                        VStack(spacing: 20){
+                            CustonInputField(icon: "person", placeholder: "Nombre de Usuario", isSecure: false, text: $username, bottomText: nameErrors)
+                            
+                            CustonInputField(icon: "envelope", placeholder: "Correo electrónico", isSecure: false, text: $email, bottomText: emailErrors)
+                            
+                            CustonInputField(icon: "lock", placeholder: "Password", isSecure: true, text: $password, bottomText: passwordErrors)
+                        }
+                        
+                        Button {
+                            showAviso=true
+                        } label: {
+                            Text("Aviso de privacidad")
+                                .underline()
+                        }
+                        .padding(.bottom)
+                        
                         Spacer()
-                    }
-                    
-                    
-                    VStack(spacing: 20){
-                        CustonInputField(icon: "person", placeholder: "Nombre de Usuario", isSecure: false, text: $username, bottomText: nameErrors)
                         
-                        CustonInputField(icon: "envelope", placeholder: "Correo electrónico", isSecure: false, text: $email, bottomText: emailErrors)
-                        
-                        CustonInputField(icon: "lock", placeholder: "Password", isSecure: true, text: $password, bottomText: passwordErrors)
+                        Button{
+                            print("Registrandose")
+                            showSelectPhoto=true
+                        } label: {
+                            Text("Registrarme")
+                                .font(.headline)
+                                .foregroundStyle(.white)
+                                .frame(width: 300, height: 50)
+                                .background(Color(.systemOrange))
+                                .clipShape(Capsule())
+                                .padding()
+                        }
                     }
-                    
-                    Button {
-                        showAviso=true
-                    } label: {
-                        Text("Aviso de privacidad")
-                            .underline()
-                    }
-                    .padding(.bottom)
-                    
-                    Spacer()
+                    .padding()
+                }
+                .frame(width: 350, height: 250)
+                .padding(.top, 50)
+                
+                
+                
+                Spacer()
+                
+                
+                AuthDestinationView {
+                    Text("¿Ya tienes cuenta?")
+                        .foregroundStyle(.white)
                     
                     Button{
-                        print("Registrandose")
-                        
+                        dismiss()
                     } label: {
-                        Text("Registrarme")
-                            .font(.headline)
-                            .foregroundStyle(.white)
-                            .frame(width: 300, height: 50)
-                            .background(Color(.systemOrange))
-                            .clipShape(Capsule())
-                            .padding()
+                        Text("Iniciar Sesion")
+                            .foregroundColor(.orange)
+                            .underline()
                     }
                 }
-                .padding()
             }
-            .frame(width: 350, height: 250)
-            .padding(.top, 50)
-            
-                            
-            
-            Spacer()
-            
-            
-            AuthDestinationView {
-                Text("¿Ya tienes cuenta?")
-                    .foregroundStyle(.white)
-                
-                Button{
-                    dismiss()
-                } label: {
-                    Text("Iniciar Sesion")
-                        .foregroundColor(.orange)
-                        .underline()
-                }
+            .onChange(of: username) { oldValue, newValue in
+                nameScopeValidation(newValue: newValue)
             }
-        }
-        .onChange(of: username) { oldValue, newValue in
-            nameScopeValidation(newValue: newValue)
-        }
-        .onChange(of: email) { oldValue, newValue in
-            validateEmailScope(newValue: newValue)
-        }
-        .onChange(of: password) { oldValue, newValue in
-            validatePasswordScope(newValue: newValue)
-        }
-        .sheet(isPresented: $showAviso) {
-            AvisoPrivacidadView()
-        }
-        .ignoresSafeArea()
+            .onChange(of: email) { oldValue, newValue in
+                validateEmailScope(newValue: newValue)
+            }
+            .onChange(of: password) { oldValue, newValue in
+                validatePasswordScope(newValue: newValue)
+            }
+            .sheet(isPresented: $showAviso) {
+                AvisoPrivacidadView()
+            }
+            .navigationDestination(isPresented: $showSelectPhoto){
+                UploadProfilePhotoView()
+                    .toolbar(.hidden)
+            }
+            .ignoresSafeArea()
+        
+        
     }
 }
 
 #Preview {
-    SignUpView()
+    NavigationStack{
+        SignUpView()
+    }
 }
 
 extension SignUpView {
