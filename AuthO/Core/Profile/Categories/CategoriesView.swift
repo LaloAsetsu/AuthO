@@ -18,7 +18,7 @@ struct CategoriesView: View {
     
     var body: some View {
         ScrollView{
-            Spacer()
+            Divider()
                 .frame(height: 20)
             LazyVGrid(columns: columns, spacing: 30) {
                 ForEach(categories, id: \.id) { category in
