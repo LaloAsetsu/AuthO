@@ -62,7 +62,6 @@ struct UploadProfilePhotoView: View {
         }
         .navigationDestination(isPresented: $openCatpcha){
             CaptchaView(done: $sesion.logged)
-                .toolbar(.hidden)
         }
         .ignoresSafeArea(edges: .all)
         

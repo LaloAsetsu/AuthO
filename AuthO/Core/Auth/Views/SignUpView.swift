@@ -108,7 +108,6 @@ struct SignUpView: View {
             }
             .navigationDestination(isPresented: $showSelectPhoto){
                 UploadProfilePhotoView()
-                    .toolbar(.hidden)
             }
             .ignoresSafeArea()
         
