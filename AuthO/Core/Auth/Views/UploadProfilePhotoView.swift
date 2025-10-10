@@ -88,6 +88,7 @@ private struct ProfileImageModifier: ViewModifier {
 
 #Preview {
     UploadProfilePhotoView()
+//        .environment(SessionManager(), .init())
 }
 
 extension UploadProfilePhotoView {
