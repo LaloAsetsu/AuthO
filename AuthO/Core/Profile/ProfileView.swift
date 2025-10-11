@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var sesion: SessionManager
+    @State private var navigateToFAQs = false
+    @State private var navigateToCategories = false
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             VStack{
                 ScrollView {
                     
@@ -47,6 +49,42 @@ struct ProfileView: View {
             .navigationTitle("O-Fraud")
             .navigationBarTitleDisplayMode(.automatic)
             .toolbar {
+                
+                ToolbarItem(placement: .topBarLeading){
+                    Menu {
+                        Button {
+                            navigateToFAQs = true
+                        } label: {
+                            Text("FAQs")
+                        }
+
+                        Divider()
+
+                        Button {
+                            navigateToCategories = true
+                        } label: {
+                            Text("Categorías")
+                        }
+                        
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                            .foregroundStyle(.blue)
+                    }
+                    .foregroundColor(.blue)
+                    
+                }
+                
+                ToolbarItem(placement: .topBarLeading){
+                    NavigationLink {
+                        AvisoPrivacidadView()
+                        
+                    } label: {
+                        
+                        Image(systemName: "exclamationmark.shield")
+                            .foregroundStyle(.blue)
+                    }
+                }
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         print("saliendo")
@@ -57,6 +95,12 @@ struct ProfileView: View {
                     }
                     .tint(.red)
                 }
+            }
+            .navigationDestination(isPresented: $navigateToCategories) {
+                CategoriesView()
+            }
+            .navigationDestination(isPresented: $navigateToFAQs) {
+                CategoriesView()
             }
             .ignoresSafeArea()
         }
