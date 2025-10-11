@@ -44,5 +44,5 @@ struct CategoryField<SideView: View>: View {
 }
 
 #Preview {
-    CategoryField(category: CategoryModel(id: 1, name: "Casa", icon: "house"), sideView: EmptyView())
+    CategoryField(category: ExampleCategories.all[0], sideView: EmptyView())
 }

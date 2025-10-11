@@ -8,10 +8,11 @@
 import Foundation
 import SwiftUI
 
-struct CategoryModel: Codable, Equatable {
+struct CategoryModel: Codable, Equatable, Identifiable {
     let id: Int
     let name: String
     let icon: String
+    let description: String
     
     var categoryColor: Color {
         if let category = CategoryColor(rawValue: id) {

@@ -8,26 +8,28 @@
 import SwiftUI
 
 struct CategoryView: View {
+    let category: CategoryModel
+    
     var body: some View {
-        
         VStack {
             Spacer()
-                .frame(height: 70)
-            Text("Titulo de la categoria")
+                .frame(height: 10)
+            Text(category.name)
                 .font(.largeTitle)
+                .fontWeight(.semibold)
             
-            Image(systemName: "house")
+            Image(systemName: category.icon)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 80, height: 80)
+                .foregroundStyle(category.categoryColor)
             
-            Text("""
-             Hola es es un texto largo
-             asi muy largo
-            """)
+            
+            
+            Text(category.description)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
-            .multilineTextAlignment(.leading)
+            .multilineTextAlignment(.center)
             
             Spacer()
         }
@@ -36,5 +38,5 @@ struct CategoryView: View {
 }
 
 #Preview {
-    CategoryView()
+    CategoryView(category: ExampleCategories.all[0])
 }

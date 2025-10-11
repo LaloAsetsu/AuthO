@@ -11,6 +11,8 @@ struct CategoriesView: View {
     let items = ["Uno", "Dos", "Tres", "Cuatro", "Cinco", "Seis", "Siete"]
     let categories = ExampleCategories.all
     
+    @State var selectedCategory: CategoryModel?
+    
     let columns = [
         GridItem(.flexible(), spacing: 20),
         GridItem(.flexible())
@@ -24,14 +26,18 @@ struct CategoriesView: View {
                 ForEach(categories, id: \.id) { category in
                     
                     Button {
-                        print("Desciption for \(category.name)")
-                        
+                        selectedCategory = category
                     } label: {
                         categoryView(for: category)
                     }
                 }
             }
             .padding()
+        }
+        .sheet(item: $selectedCategory){ category in
+            CategoryView(category: category)
+                .presentationDetents([.medium, .large])
+                        .presentationDragIndicator(.visible)
         }
         .navigationTitle("Categorías")
     }
