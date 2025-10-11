@@ -100,7 +100,7 @@ struct ProfileView: View {
                 CategoriesView()
             }
             .navigationDestination(isPresented: $navigateToFAQs) {
-                CategoriesView()
+                FAQsView()
             }
             .ignoresSafeArea()
         }

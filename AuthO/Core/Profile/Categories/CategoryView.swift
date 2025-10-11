@@ -13,7 +13,7 @@ struct CategoryView: View {
     var body: some View {
         VStack {
             Spacer()
-                .frame(height: 10)
+                .frame(height: 30)
             Text(category.name)
                 .font(.largeTitle)
                 .fontWeight(.semibold)

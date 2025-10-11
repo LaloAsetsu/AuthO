@@ -80,6 +80,16 @@ struct CaptchaView: View {
         .onAppear {
             focusedField = .input1
         }
+        .onChange(of: input4){ oldValue, newValue in
+            let input = input1 + input2 + input3 + input4
+            if input == String(number) {
+                done = true
+            } else {
+                
+                number = Int.random(in: 1000...9999)
+                clearInputs()
+            }
+        }
     }
 
     // Función auxiliar para crear un campo de un solo carácter
@@ -92,7 +102,7 @@ struct CaptchaView: View {
             .background(Color.gray.opacity(0.1))
             .cornerRadius(8)
             .focused($focusedField, equals: field)
-            .onChange(of: binding.wrappedValue) { newValue in
+            .onChange(of: binding.wrappedValue) { oldValue, newValue in
                 if newValue.count > 1 {
                     binding.wrappedValue = String(newValue.prefix(1))
                 }
