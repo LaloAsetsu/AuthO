@@ -53,7 +53,7 @@ struct ExampleCategories {
         static let viajes = CategoryModel(
             id: 7,
             name: "Viajes",
-            icon: "megaphone.fill",
+            icon: "airplane.path.dotted",
             description: "Estafas relacionadas con paquetes turísticos falsos, reservas inexistentes o agencias de viaje fraudulentas. También abarca casos de promociones engañosas para vuelos, hoteles o alquiler de autos."
         )
         
